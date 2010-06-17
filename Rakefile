@@ -31,6 +31,8 @@ spec = Gem::Specification.new do |s|
   s.email = "sbertel@mobithought.com"
   s.homepage = "http://github.com/shenoudab/devise_traceable"
   s.author = 'Shenouda Bertel'
+  s.add_dependency("warden")
+  s.add_dependency("devise")
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
