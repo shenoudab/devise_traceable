@@ -3,17 +3,8 @@
 # and on authentication. Retrieving the user from session (:fetch) does
 # not trigger it.
 
-Warden::Manager.after_set_user :except => :fetch do |record, warden, options|
-  puts "Shenouda AfterSETUser" + record
-  if record.respond_to?(:insert_login!) #&& warden.authenticated?(options[:scope])
-    puts "WardenRequest" + warden.request
-    record.insert_login!(warden.request)
-  end
-end
-
 Warden::Manager.before_logout do |record, warden, opts|
-  puts "Shenouda Before Logout" + record
-  if record.respond_to?(:update_logout!)
-    record.update_logout!(warden.request)
+  if record.respond_to?(:stamp!)
+    record.stamp!
   end
 end

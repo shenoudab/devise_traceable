@@ -3,6 +3,7 @@ require 'rake'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/testtask'
+require File.join(File.dirname(__FILE__), 'lib', 'devise_traceable', 'version')
 
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'

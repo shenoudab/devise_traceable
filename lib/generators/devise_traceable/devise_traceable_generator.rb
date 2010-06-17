@@ -25,7 +25,33 @@ class DeviseTraceableGenerator < Rails::Generators::NamedBase
   class_option :orm
   class_option :migration, :type => :boolean, :default => orm_has_migration?
 
+  def invoke_orm_model
+    if model_exists?
+      say "* Model already exists."
+    elsif options[:orm].present?
+      invoke "model", ["#{name}Tracing"], :migration => false, :orm => options[:orm]
+
+      unless model_exists?
+        abort "Tried to invoke the model generator for '#{options[:orm]}' but could not find it.\n" <<
+          "Please create your model by hand before calling `rails g devise_traceable #{name}`."
+      end
+    else
+      abort "Cannot create a devise model because config.generators.orm is blank.\n" <<
+        "Please create your model by hand or configure your generators orm before calling `rails g devise_traceable #{name}`."
+    end
+  end
+
   def create_migration_file
-    migration_template 'migration.rb', "db/migrate/devise_create_#{name.tableize}_tracing.rb"
+    migration_template 'migration.rb', "db/migrate/devise_create_#{name.downcase}_tracings.rb"
+  end
+
+  protected
+
+  def model_exists?
+    File.exists?(File.join(destination_root, model_path))
+  end
+
+  def model_path
+    @model_path ||= File.join("app", "models", "#{file_path}.rb")
   end
 end

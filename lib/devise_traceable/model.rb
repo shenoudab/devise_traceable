@@ -7,22 +7,11 @@ module Devise
     # * resource_id
     # * sign_in_at
     # * sign_out_at
-    # * time
-    #
-
+    
     module Traceable
-      def insert_login!(request)
+      def stamp!
         new_current = Time.now
-        self.sign_in_at  = new_current
-        save(:validate => false)
-      end
-
-      def update_logout!(request)
-        new_current = Time.now
-        self.sign_out_at  = new_current
-        time = self.sign_out_at - self.sign_in_at
-        self.time = time
-        save(:validate => false)
+        "#{self.class}Tracing".constantize.create(:sign_in_at => self.current_sign_in_at, :sign_out_at => new_current, "#{self.class}".foreign_key.to_sym => self.id)
       end
     end
   end
