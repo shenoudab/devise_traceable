@@ -2,5 +2,9 @@ unless defined?(Devise)
   require 'devise'
 end
 
-require 'devise_traceable/model'
-require 'devise_traceable/rails'
+module DeviseTraceable
+  require 'devise_traceable/rails'
+end
+
+Devise.add_module :traceable, :model => 'devise_traceable/model'
+
