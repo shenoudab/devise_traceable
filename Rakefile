@@ -3,7 +3,6 @@ require 'rake'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rake/testtask'
-require File.join(File.dirname(__FILE__), 'lib', 'devise_traceable', 'version')
 
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
@@ -28,7 +27,7 @@ spec = Gem::Specification.new do |s|
   s.description = "Devise Traceable For Traceing Devise Models Logins and Logouts in separate model table"
   s.files =  FileList["[A-Z]*", "{lib}/**/*"]
   s.require_paths = ["lib"]
-  s.version = DeviseTraceable::VERSION.dup
+  s.version = "0.0.1"
   s.email = "sbertel@mobithought.com"
   s.homepage = "http://github.com/shenoudab/devise_traceable"
   s.author = 'Shenouda Bertel'
