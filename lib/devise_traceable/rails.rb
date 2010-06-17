@@ -1,5 +1,4 @@
 require 'devise_traceable'
-require 'rails'
 
 module DeviseTraceable
   class Engine < ::Rails::Engine

@@ -24,9 +24,10 @@ end
 
 spec = Gem::Specification.new do |s|
   s.name = "devise_traceable"
-  s.summary = "Devise Traceable"
-  s.description = "Devise Traceable"
-  s.files =  FileList["[A-Z]*", "{app,config,lib}/**/*"]
+  s.summary = "Devise Traceable For Traceing Devise Models"
+  s.description = "Devise Traceable For Traceing Devise Models Logins and Logouts in separate model table"
+  s.files =  FileList["[A-Z]*", "{lib}/**/*"]
+  s.require_paths = ["lib"]
   s.version = DeviseTraceable::VERSION.dup
   s.email = "sbertel@mobithought.com"
   s.homepage = "http://github.com/shenoudab/devise_traceable"
